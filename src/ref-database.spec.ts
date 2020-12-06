@@ -1,15 +1,17 @@
-import * as fs from 'fs'
+import * as rimraf from 'rimraf'
 import { RefDatabase } from './ref-database'
 
 let dir = 'data'
 let db: RefDatabase<any>
 
 beforeAll(async () => {
-  if (fs.existsSync(dir)) {
-    fs.rmdirSync(dir, { recursive: true })
-  }
+  rimraf.sync(dir)
   db = new RefDatabase(dir)
   await db.init()
+})
+
+afterAll(async () => {
+  rimraf.sync(dir)
 })
 
 it('should store object', async function () {
