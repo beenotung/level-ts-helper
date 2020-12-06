@@ -1,8 +1,7 @@
 #  npm
 node_modules
 pnpm-lock.yaml
-
-# built files
+*.tgz
 dist/
 
 # IDE
