@@ -1,0 +1,12 @@
+#  npm
+node_modules
+pnpm-lock.yaml
+
+# built files
+dist/
+
+# IDE
+.idea/
+
+# test files
+data
