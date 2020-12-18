@@ -26,3 +26,9 @@ it('should get object', async function () {
 it('should preserve object value', async function () {
   expect(await db.get('sample')).deep.equals({ id: 1, username: 'Alice' })
 })
+
+it('should preserve nested object', async function () {
+  let a = { id: 123, tags: ['1', '2', '3'] }
+  await db.put('a', a)
+  expect(await db.get('a')).deep.equals(a)
+})
