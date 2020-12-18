@@ -1,16 +1,17 @@
+import { expect } from 'chai'
 import * as rimraf from 'rimraf'
 import { RefDatabase } from './ref-database'
 
 let dir = 'data'
 let db: RefDatabase<any>
 
-beforeAll(async () => {
+before(async () => {
   rimraf.sync(dir)
   db = new RefDatabase(dir)
   await db.init()
 })
 
-afterAll(async () => {
+after(async () => {
   rimraf.sync(dir)
 })
 
@@ -23,5 +24,5 @@ it('should get object', async function () {
 })
 
 it('should preserve object value', async function () {
-  expect(db.get('sample')).resolves.toEqual({ id: 1, username: 'Alice' })
+  expect(await db.get('sample')).deep.equals({ id: 1, username: 'Alice' })
 })
