@@ -13,5 +13,8 @@ Wrapper Classes:
  - [CachedLevel<T>](./src/cached-val-level.ts)
  - [CachedValLevel](./src/cached-val-level.ts)
 
+Usage examples refer to the corresponding .spec.ts files.
+This package has 100% code coverage.
+
 ## License
 [BSD-2-Clause](./LICENSE) (Free Open Source Software)
