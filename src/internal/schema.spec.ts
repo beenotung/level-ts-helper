@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import { fromSchemaObject, toSchemaObject } from './schema'
 
 describe('schema TestSuit', () => {
@@ -12,7 +13,7 @@ describe('schema TestSuit', () => {
     it('should preserve value of ' + name, function () {
       let object = toSchemaObject(sample)
       let result = fromSchemaObject(object)
-      expect(result).toEqual(sample)
+      expect(result).deep.equals(sample)
     })
   }
 

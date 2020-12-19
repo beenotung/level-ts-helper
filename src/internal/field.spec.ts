@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import { mapFieldValue, unmapFieldValue } from './field'
 
 describe('Field TestSuit', () => {
@@ -25,7 +26,15 @@ describe('Field TestSuit', () => {
     it(`should preserve original value of ${type}`, function () {
       let { type, str } = mapFieldValue(sample)
       let value = unmapFieldValue(type, str)
-      expect(value).toEqual(sample)
+      expect(value).deep.equals(sample)
+    })
+    it('should reject invalid value', function () {
+      expect(mapFieldValue.bind(null, Symbol.for('aType'))).to.throws(
+        'unsupported type: symbol',
+      )
+      expect(unmapFieldValue.bind(null, 'aType', 'str val')).to.throws(
+        'unsupported type: aType',
+      )
     })
   }
 })
