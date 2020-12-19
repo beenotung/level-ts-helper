@@ -32,7 +32,10 @@
     "tsc": "tsc -p .",
     "test": "run-p tsc mocha",
     "mocha": "ts-mocha src/**/*.spec.ts",
-    "coverage": "nyc npm run mocha -- --reporter=progress"
+    "coverage": "nyc npm run mocha -- --reporter=progress",
+    "report:update": "nyc --reporter=lcov npm run mocha -- --reporter=progress",
+    "report:open": "open-cli coverage/lcov-report/index.html",
+    "report": "run-s report:update report:open"
   },
   "dependencies": {
     "@beenotung/level-ts": "^1.14.1"
@@ -46,6 +49,7 @@
     "mocha": "^8.2.1",
     "npm-run-all": "^4.1.5",
     "nyc": "^15.1.0",
+    "open-cli": "^6.0.1",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
     "ts-mocha": "^8.0.0",
