@@ -31,7 +31,7 @@
     "build": "npm run tsc",
     "tsc": "tsc -p .",
     "test": "run-p tsc mocha",
-    "mocha": "ts-mocha src/**/*.spec.ts",
+    "mocha": "ts-mocha \"src/**/*.spec.ts\"",
     "coverage": "nyc npm run mocha -- --reporter=progress",
     "report:update": "nyc --reporter=lcov npm run mocha -- --reporter=progress",
     "report:open": "open-cli coverage/lcov-report/index.html",

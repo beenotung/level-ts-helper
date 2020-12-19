@@ -27,7 +27,7 @@ export class CachedLevel<T> {
 
   get(key: string): T {
     if (!this.keys.has(key)) {
-      throw new Error('unknown key')
+      throw new Error(`unknown key: ${JSON.stringify(key)}`)
     }
     return this.values[key]
   }

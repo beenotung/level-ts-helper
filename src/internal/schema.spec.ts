@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { fromSchemaObject, toSchemaObject } from './schema'
 
-describe('schema TestSuit', () => {
+describe('Schema TestSuit', () => {
   function test(name: string, sample: object) {
     it('should encode ' + name, function () {
       let object = toSchemaObject(sample)

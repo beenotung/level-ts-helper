@@ -20,6 +20,7 @@ export class RefDatabase<T extends object> {
   async init() {
     await Promise.all([this.kvs.init(), this.schemas.init()])
   }
+
   async forceSync() {
     await Promise.all([this.kvs.sync(), this.schemas.init()])
   }
@@ -37,7 +38,7 @@ export class RefDatabase<T extends object> {
     await this.objects.put(key, payload)
   }
 
-  exists(key: string) {
+  exists(key: string): Promise<boolean> {
     return this.objects.exists(key)
   }
 
