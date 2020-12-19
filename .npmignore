@@ -6,6 +6,10 @@ example/
 .prettierrc
 .prettierignore
 jest.config.js
+data/
+coverage/
+.nyc_output
+.nycrc.json
 tsconfig.json
 tslint.json
 *.tgz
