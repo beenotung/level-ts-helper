@@ -1,7 +1,6 @@
 node_modules/
 pnpm-lock.yaml
 .idea/
-example/
 .editorconfig
 .prettierrc
 .prettierignore
@@ -12,4 +11,6 @@ coverage/
 .nycrc.json
 tsconfig.json
 tslint.json
+example/.idea/
+example/data/
 *.tgz
