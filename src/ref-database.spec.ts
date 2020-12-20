@@ -30,6 +30,19 @@ describe('RefDatabase TestSuit', () => {
     expect(await db.get('a')).deep.equals(a)
   })
 
+  it('should preserve complex nested object', async function () {
+    let int = 42
+    let str = 'I am a text'
+    let a = {
+      int,
+      str,
+      arr: [int, str, { int, str }],
+      obj: { int, str, arr: [int, str, { int, str }] },
+    }
+    await db.put('a', JSON.parse(JSON.stringify(a)))
+    expect(await db.get('a')).deep.equals(a)
+  })
+
   let dir2 = prepareDBDir('ref-db-2')
   let db2: RefDatabase<any>
   it('should load existing data', async function () {
