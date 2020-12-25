@@ -2,7 +2,10 @@ import Level from '@beenotung/level-ts'
 
 export class CachedLevel<T> {
   private keys = new Set<string>()
+  // key -> value
   private values: Record<string, T> = {}
+  // value -> key
+  private valueKeys = new Map<T, string>()
 
   constructor(private level: Level) {}
 
@@ -15,6 +18,7 @@ export class CachedLevel<T> {
       eachFn: data => {
         this.keys.add(data.key)
         this.values[data.key] = data.value
+        this.valueKeys.set(data.value, data.key)
       },
     })
   }
@@ -22,6 +26,7 @@ export class CachedLevel<T> {
   put(key: string, value: T): Promise<T> {
     this.keys.add(key)
     this.values[key] = value
+    this.valueKeys.set(value, key)
     return this.level.put(key, value as any)
   }
 
@@ -37,10 +42,8 @@ export class CachedLevel<T> {
   }
 
   getKey(value: T): string {
-    for (const key of this.keys) {
-      if (this.values[key] === value) {
-        return key
-      }
+    if (this.valueKeys.has(value)) {
+      return this.valueKeys.get(value)!
     }
     throw new Error('record not found')
   }
