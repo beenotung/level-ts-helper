@@ -12,7 +12,7 @@ describe('cached-level.ts spec', function () {
     await db.put('two', 2)
     await db.put('three', 3)
   })
-  let db = new CachedLevel(level)
+  let db = new CachedLevel<number>(level)
   it('should populate cache', async () => {
     await db.populateCache()
   })
@@ -27,4 +27,31 @@ describe('cached-level.ts spec', function () {
   it('should throw error when get non-existing key', function () {
     expect(() => db.getKey('404')).throws('record not found')
   })
+  it('should lookup key by value', () => {
+    expect(db.getKey(2)).equals('two')
+  })
+  it('should check existence of value', () => {
+    expect(db.existsValue(2)).true
+    expect(db.existsValue(4)).false
+  })
+  it('should return cached list of keys', function () {
+    expect(db.getKeys().sort(compare)).deep.equals(
+      ['one', 'two', 'three'].sort(compare),
+    )
+  })
+  it('should return cached list of key-value entries', function () {
+    expect(db.getEntries().sort(compare)).deep.equals(
+      [
+        ['one', 1],
+        ['two', 2],
+        ['three', 3],
+      ].sort(compare),
+    )
+  })
 })
+
+function compare(a: any, b: any) {
+  a = JSON.stringify(a)
+  b = JSON.stringify(b)
+  return a === b ? 0 : a > b ? 1 : -1
+}

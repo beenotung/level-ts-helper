@@ -47,4 +47,22 @@ export class CachedLevel<T> {
     }
     throw new Error('record not found')
   }
+
+  existsValue(value: T): boolean {
+    return this.valueKeys.has(value)
+  }
+
+  /**
+   * @remark unsorted
+   * */
+  getKeys(): string[] {
+    return Array.from(this.keys)
+  }
+
+  /**
+   * @remark unsorted
+   * */
+  getEntries(): Array<[string, T]> {
+    return Object.entries(this.values)
+  }
 }
