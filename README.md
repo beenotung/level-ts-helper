@@ -10,7 +10,7 @@ Wrapper Classes:
  - [RefDatabase<T>](./src/ref-database.ts)
  - [LevelDatabase](./src/level-database.ts)
  - [KeyValLevel](./src/key-val-level.ts)
- - [CachedLevel<T>](./src/cached-val-level.ts)
+ - [CachedLevel<T>](./src/cached-level.ts)
  - [CachedValLevel](./src/cached-val-level.ts)
 
 Usage examples refer to the corresponding .spec.ts files.
