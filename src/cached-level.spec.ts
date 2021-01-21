@@ -21,6 +21,14 @@ describe('cached-level.ts spec', function () {
     expect(await db.get('two')).equals(2)
     expect(await db.get('three')).equals(3)
   })
+  it('should check if key exists', async () => {
+    await db.put('exist', 1)
+    expect(db.exists('exist')).true
+  })
+  it('should delete by key', async () => {
+    await db.del('exist')
+    expect(db.exists('exist')).false
+  })
   it('should throw error when get non-existing value', async () => {
     expect(() => db.get('404')).throws(`unknown key: "404"`)
   })

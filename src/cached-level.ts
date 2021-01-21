@@ -41,6 +41,14 @@ export class CachedLevel<T> {
     return this.keys.has(key)
   }
 
+  del(key: string): Promise<void> {
+    const value = this.values[key]
+    this.keys.delete(key)
+    delete this.values[key]
+    this.valueKeys.delete(value)
+    return this.level.del(key)
+  }
+
   getKey(value: T): string {
     if (this.valueKeys.has(value)) {
       return this.valueKeys.get(value)!
