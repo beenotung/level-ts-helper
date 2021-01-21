@@ -24,6 +24,9 @@ export function mkdir(dir: string) {
 export function copyDir(src: string, dest: string) {
   mkdir(dest)
   for (let file of fs.readdirSync(src)) {
+    if (file === 'LOCK') {
+      continue
+    }
     let srcFile = path.join(src, file)
     let destFile = path.join(dest, file)
     let stat = fs.statSync(srcFile)
